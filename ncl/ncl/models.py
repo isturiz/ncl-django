@@ -1,7 +1,6 @@
 from django.db import models
 
 class Student(models.Model):
-
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
@@ -42,23 +41,22 @@ class ProfessorXCourse(models.Model):
     def __str__(self):
         return f"{self.professor.first_name} {self.professor.last_name} - {self.course.name}"
 
+class Lesson(models.Model):
+    description = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.description}"
+
 class Payment(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    payment_date = models.DateField()
-    reference_number = models.CharField(max_length=50)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    description = models.TextField()
-    course = models.ManyToManyField(Course)
 
     def __str__(self):
-        return f"{self.student.first_name} {self.student.last_name} - {self.amount}"
+        return f"{self.amount}"
 
-class Inscription(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, unique=True)
-    course = models.ManyToManyField(Course)
+class ClassXPayment(models.Model):
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.student.first_name} {self.student.last_name} - {self.course.name}"
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+        return f"{self.lesson.description} - {self.payment.amount}"
+    
