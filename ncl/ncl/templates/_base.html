@@ -18,13 +18,13 @@
 
 </head>
 
-<body class="bg-green-50">
+<body class="bg-blue-500">
 
     <!-- Add this -->
     <nav class="bg-green-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <a href="{{ .Site.Params.homepage }}/" class="flex items-center">
-              <img src="/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
+              <img src="" class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
               <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite Django</span>
           </a>
           <button data-collapse-toggle="mobile-menu" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu" aria-expanded="false">
@@ -60,7 +60,11 @@
         {% endblock content %}
     </div>
 
-    <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
+    {% comment %} <script src="./node_modules/flowbite/dist/flowbite.min.js"></script> {% endcomment %}
+    <script src="{% static 'node_modules/flowbite/dist/flowbite.min.js' %}"></script>
+
+    {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script> {% endcomment %}
+
 </body>
 
 </html>
